@@ -11,7 +11,7 @@ To train a model, run `train.py` with the path to the configs:
 ### 1. Single node, 8 GPUs:
 
 ```shell
-python -m torch.distributed.launch --nproc_per_node=8 --nnodes=1 --node_rank=0 --master_addr="127.0.0.1" --master_port=1234 train.py configs/ms1mv3_r50-adaface
+python -m torch.distributed.launch --nproc_per_node=8 --nnodes=1 --node_rank=0 --master_addr="127.0.0.1" --master_port=1234 train.py configs/ms1mv3_r50-adaface.py
 ```
 
 ### 2. Multiple nodes, each node 8 GPUs (not tested with AdaFace):
@@ -19,17 +19,18 @@ python -m torch.distributed.launch --nproc_per_node=8 --nnodes=1 --node_rank=0 -
 Node 0:
 
 ```shell
-python -m torch.distributed.launch --nproc_per_node=8 --nnodes=2 --node_rank=0 --master_addr="ip1" --master_port=1234 train.py train.py configs/ms1mv3_r50-adaface
+python -m torch.distributed.launch --nproc_per_node=8 --nnodes=2 --node_rank=0 --master_addr="ip1" --master_port=1234 train.py train.py configs/ms1mv3_r50-adaface.py
 ```
 
 Node 1:
 
 ```shell
-python -m torch.distributed.launch --nproc_per_node=8 --nnodes=2 --node_rank=1 --master_addr="ip1" --master_port=1234 train.py train.py configs/ms1mv3_r50-adaface
+python -m torch.distributed.launch --nproc_per_node=8 --nnodes=2 --node_rank=1 --master_addr="ip1" --master_port=1234 train.py train.py configs/ms1mv3_r50-adaface.py
 ```
 
 ## To do
 - [ ] Add ViT models
+- [ ] Report comparision between Adaface, Arcface & Cosface (currently in training, dataset 5M ids and 100M images)
 - [ ] Result for common large scale face recognition dataset (MS1MV2, MS1MV3, Glint360k, WebFace)
 
 ## Reference
