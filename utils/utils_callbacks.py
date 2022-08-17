@@ -39,6 +39,8 @@ class CallBackVerification(object):
                 '[+][%d]Score / Score-Highest: %2.5f / %2.5f' % (global_step, current_score, self.current_highest))
         if self.current_highest <= current_score:
             path_save = 'tmp/backbone_{}.pth'.format(current_score)
+            if not os.path.exists('tmp'):
+                os.mkdir('tmp')
             torch.save(backbone.module.state_dict(), path_save)
             print('Saved as best checkpoint to', path_save)
             # if global_step > 100 and module_partial_fc is not None:
