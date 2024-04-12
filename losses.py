@@ -72,9 +72,9 @@ class AdaFace(torch.nn.Module):
         m_arc.scatter_(1, label[index_positive].view(-1, 1), 1.0)
         g_angular = self.m * margin_scaler[index_positive] * -1
         m_arc = m_arc * g_angular
-        cosine.acos()
+        cosine.acos_()
         cosine[index_positive] = torch.clip(cosine[index_positive] + m_arc, min=self.eps, max=math.pi-self.eps)
-        cosine.cos()
+        cosine.cos_()
 
         # g_additive
         
